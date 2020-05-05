@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\Blaz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportLibrary", "SupportLibrary\SupportLibrary.csproj", "{CADE1799-DEF8-44BC-9B32-A9354F4EE102}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SampleDB", "SampleDB\SampleDB.sqlproj", "{39A31A41-84A3-411B-8E32-90093DE77040}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{CADE1799-DEF8-44BC-9B32-A9354F4EE102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CADE1799-DEF8-44BC-9B32-A9354F4EE102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CADE1799-DEF8-44BC-9B32-A9354F4EE102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A31A41-84A3-411B-8E32-90093DE77040}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
