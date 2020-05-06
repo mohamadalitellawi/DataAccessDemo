@@ -8,5 +8,7 @@ namespace SupportLibrary.Data
     {
         Task CreatePerson(IPersonModel person);
         Task<List<IPersonModel>> ReadPeopole();
+        Task<IPersonModel> ReadPeopole(int id);
+        Task UpdatePerson(IPersonModel person);
     }
 }

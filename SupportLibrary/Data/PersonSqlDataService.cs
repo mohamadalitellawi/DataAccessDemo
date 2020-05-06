@@ -35,5 +35,20 @@ namespace SupportLibrary.Data
                                                                           "SQLDB");
             return people.ToList<IPersonModel>();
         }
+
+        public async Task<IPersonModel> ReadPeopole( int id)
+        {
+            var people = await _dataAccess.LoadData<PersonModel, dynamic>("dbo.spPeopleReadOne",
+                                                                          new { Id = id },
+                                                                          "SQLDB");
+            return people.FirstOrDefault();
+        }
+
+        public async Task UpdatePerson(IPersonModel person)
+        {
+           
+
+            await _dataAccess.SaveData("dbo.spPeople_Update", person, "SQLDB");
+        }
     }
 }

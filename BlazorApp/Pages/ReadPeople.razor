@@ -9,31 +9,71 @@
 }
 else
 {
-    <table class="table table-striped" >
-        <thead class="thead-dark">
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date Of Birth</th>
-            </tr>
-        </thead>
-        <tbody >
-            @foreach (var p in people)
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date Of Birth</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in people)
+                    {
+                        <tr>
+                            <td>@p.Id</td>
+                            <td>@p.FirstName</td>
+                            <td>@p.LastName</td>
+                            <td>@p.DateOfBirth</td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="(()=>UpdatePerson(p.Id))">
+                                    Update
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            @if (showEditForm)
             {
-            <tr>
-                <td>@p.Id</td>
-                <td>@p.FirstName</td>
-                <td>@p.LastName</td>
-                <td>@p.DateOfBirth</td>
-            </tr>
+                <UpdatePerson Id="@idToUpdate" OnUpdate="HandleOnUpdate"></UpdatePerson>
             }
-        </tbody>
-    </table>
+        </div>
+    </div>
 }
 
 @code {
     private List<IPersonModel> people;
+
+    private bool showEditForm = false;
+
+    private int idToUpdate = 0;
+
+    private void HandleOnUpdate(IPersonModel person)
+    {
+        showEditForm = false;
+        var p = people.Where(x => x.Id == person.Id).FirstOrDefault();
+
+        if (p != null)
+        {
+            p.FirstName = person.FirstName;
+            p.LastName = person.LastName;
+            p.DateOfBirth = person.DateOfBirth;
+
+        }
+    }
+
+    private void UpdatePerson(int id)
+    {
+        idToUpdate = id;
+        showEditForm = true;
+    }
 
     protected override async Task OnParametersSetAsync()
     {

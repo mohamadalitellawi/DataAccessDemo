@@ -1,0 +1,53 @@
+﻿@inject IPersonDataService personData
+
+    <EditForm Model="@person" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
+        <div class="form-group">
+            <label>Id</label>
+            <span>@person.Id</span>
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <InputText @bind-Value="person.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <InputText @bind-Value="person.LastName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Date Of Birth</label>
+            <InputDate @bind-Value="person.DateOfBirth" class="form-control" />
+        </div>
+        <button class="btn btn-primary" type="submit"> Update Person </button>
+    </EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public EventCallback<IPersonModel> OnUpdate { get; set; }
+
+    private IPersonModel person = new DisplayPersonModel();
+
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var p = await personData.ReadPeopole(Id);
+
+        person.Id = p.Id;
+        person.FirstName = p.FirstName;
+        person.LastName = p.LastName;
+        person.DateOfBirth = p.DateOfBirth;
+
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await personData.UpdatePerson(person);
+        await OnUpdate.InvokeAsync(person);
+    }
+}
