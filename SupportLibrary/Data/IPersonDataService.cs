@@ -10,6 +10,7 @@ namespace SupportLibrary.Data
         Task DeletePerson(int id);
         Task<List<IPersonModel>> ReadPeopole();
         Task<IPersonModel> ReadPeopole(int id);
+        Task<List<IPersonModel>> SearchPeopole(string searchTerm);
         Task UpdatePerson(IPersonModel person);
     }
 }
